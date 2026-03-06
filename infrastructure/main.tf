@@ -15,6 +15,12 @@ provider "azurerm" {
 resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name
   location = var.location
+
+  tags = {
+    Environment = "prod"
+    ManagedBy   = "Terraform"
+    Project     = "azure-snowflake-pipeline"
+  }
 }
 
 # Azure Storage Account Gen2 (Hierarchical Namespace Enabled)
@@ -27,6 +33,12 @@ resource "azurerm_storage_account" "datalake" {
 
   # CRITICAL: Enable Hierarchical Namespace for ADLS Gen2
   is_hns_enabled = true
+
+  tags = {
+    Environment = "prod"
+    ManagedBy   = "Terraform"
+    Project     = "azure-snowflake-pipeline"
+  }
 }
 
 # Storage Container (File System in Gen2)
